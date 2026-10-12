@@ -6,12 +6,12 @@ import re
 import io
 
 st.set_page_config(
-    page_title="Tra cứu điểm học sinh",
+    page_title="Tra cứu điểm học sinh trường THCS Lý Tự Trọng - Long Hoa",
     page_icon="📘",
     layout="wide"
 )
 
-st.title("📘 TRA CỨU ĐIỂM HỌC SINH")
+st.title("📘 TRA CỨU ĐIỂM HỌC SINH - TRƯỜNG THCS LÝ TỰ TRỌNG - LONG HOA")
 st.caption(
     "Tra cứu điểm bằng Mã định danh Bộ GD&ĐT."
 )
