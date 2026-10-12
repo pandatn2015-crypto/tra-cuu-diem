@@ -234,14 +234,43 @@ if query:
     else:
         first = matches[0]
 
-        c1, c2, c3, c4 = st.columns(4)
-        c1.metric("Họ và tên", first["Họ và tên"] or "—")
-        c2.metric(
+        
+        # Hiển thị thông tin học sinh, không cắt tên dài
+        st.markdown(
+            f"""
+            <div style="
+                background-color: rgba(128, 128, 128, 0.08);
+                padding: 16px 20px;
+                border-radius: 10px;
+                margin-bottom: 15px;
+                overflow-wrap: anywhere;
+            ">
+                <div style="font-size: 14px; color: #808080;">
+                    HỌ VÀ TÊN
+                </div>
+                <div style="
+                    font-size: 24px;
+                    font-weight: 700;
+                    line-height: 1.5;
+                    white-space: normal;
+                    overflow-wrap: anywhere;
+                ">
+                    {first["Họ và tên"] or "—"}
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
+        c1, c2, c3 = st.columns(3)
+
+        c1.metric(
             "Lớp",
             ", ".join(sorted(set(r["Lớp"] for r in matches)))
         )
-        c3.metric("Ngày sinh", first["Ngày sinh"] or "—")
-        c4.metric("Giới tính", first["Giới tính"] or "—")
+        c2.metric("Ngày sinh", first["Ngày sinh"] or "—")
+        c3.metric("Giới tính", first["Giới tính"] or "—")
+
 
         st.subheader("📚 Điểm theo từng môn")
 
