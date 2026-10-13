@@ -1,4 +1,3 @@
-
 import streamlit as st
 import pandas as pd
 from pathlib import Path
@@ -6,12 +5,12 @@ import re
 import io
 
 st.set_page_config(
-    page_title="Tra cứu điểm học sinh trường THCS Lý Tự Trọng - Long Hoa",
+    page_title="Tra cứu điểm học sinh",
     page_icon="📘",
     layout="wide"
 )
 
-st.title("📘 TRA CỨU ĐIỂM HỌC SINH - TRƯỜNG THCS LÝ TỰ TRỌNG - LONG HOA")
+st.title("📘 TRA CỨU ĐIỂM HỌC SINH")
 st.caption(
     "Tra cứu điểm bằng Mã định danh Bộ GD&ĐT."
 )
@@ -153,9 +152,37 @@ def read_workbook(path: Path):
     return records
 
 
+# ===== SIDEBAR: LOGO VÀ THÔNG TIN =====
+logo1_path = ROOT / "logoltt.jpg"
+logo2_path = ROOT / "K.png"
+
 with st.sidebar:
+    # Hai logo nằm cạnh nhau
+    col1, col2 = st.columns(2)
+
+    with col1:
+        if logo1_path.exists():
+            st.image(str(logo1_path), use_container_width=True)
+
+    with col2:
+        if logo2_path.exists():
+            st.image(str(logo2_path), use_container_width=True)
+
+    st.markdown(
+        """
+        <div style="text-align:center;">
+            <h3>📘 TRA CỨU ĐIỂM HỌC SINH</h3>
+            <p>Tra cứu điểm bằng Mã định danh Bộ GD&ĐT.</p>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+    st.divider()
+
     st.header("⚙️ Dữ liệu")
     st.caption("Đọc file Excel cùng cấp với home.py.")
+
     refresh = st.button(
         "🔄 Đọc lại dữ liệu",
         use_container_width=True
