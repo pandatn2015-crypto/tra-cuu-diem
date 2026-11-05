@@ -575,12 +575,7 @@ st.markdown(
     """
     <div class="header-box">
         <h1>📘 TRA CỨU ĐIỂM HỌC SINH</h1>
-        <p>
-            TRƯỜNG THCS LÝ TỰ TRỌNG - PHƯỜNG LONG HOA
-        </p>
-        <p>
-            Tra cứu kết quả học tập bằng Mã định danh Bộ GD&ĐT
-        </p>
+        <h1> TRƯỜNG THCS LÝ TỰ TRỌNG - PHƯỜNG LONG HOA</h1>
     </div>
     """,
     unsafe_allow_html=True
@@ -640,14 +635,14 @@ with col3:
 # =====================================================
 
 st.markdown(
-    '<div class="section-title">🔎 TRA CỨU THÔNG TIN HỌC SINH</div>',
+    '<div class="section-title">🔎 TRA CỨU THÔNG TIN KẾT QUẢ HỌC TẬP CỦA HỌC SINH</div>',
     unsafe_allow_html=True
 )
 
-st.markdown(
-    '<div class="search-box">',
-    unsafe_allow_html=True
-)
+# st.markdown(
+#     '<div class="search-box">',
+#     unsafe_allow_html=True
+# )
 
 query = st.text_input(
     "Nhập Mã định danh Bộ GD&ĐT",
@@ -658,7 +653,7 @@ query = st.text_input(
 st.markdown(
     """
     <div style="font-size:13px; color:#64748b; margin-top:5px;">
-        💡 Nhập mã định danh để xem thông tin và kết quả học tập.
+        💡 Nhập mã định danh Bộ GD và ĐT để xem thông tin và kết quả học tập.
     </div>
     """,
     unsafe_allow_html=True
@@ -903,9 +898,9 @@ st.markdown(
     <div class="footer">
         <b>TRƯỜNG THCS LÝ TỰ TRỌNG - PHƯỜNG LONG HOA</b>
         <br>
-        Hệ thống tra cứu kết quả học tập học sinh
+        Hệ thống tra cứu kết quả học tập học sinh miễn phí, không thương mại
         <br>
-        © 2026 - Bản quyền thuộc nhà trường
+        © 2026 - Bản quyền thuộc TK và nhà trường
     </div>
     """,
     unsafe_allow_html=True
