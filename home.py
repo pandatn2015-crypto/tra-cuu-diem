@@ -760,6 +760,7 @@ if query:
                 unsafe_allow_html=True
             )
 
+        
         # ---------------------------------------------
         # ĐIỂM THEO TỪNG MÔN
         # ---------------------------------------------
@@ -787,13 +788,10 @@ if query:
 
                     df = pd.DataFrame([
                         {
-                            "STT": i + 1,
                             "Cột điểm / Nội dung": k,
                             "Kết quả": v
                         }
-                        for i, (k, v) in enumerate(
-                            rec["Điểm"].items()
-                        )
+                        for k, v in rec["Điểm"].items()
                     ])
 
                     st.dataframe(
@@ -801,10 +799,6 @@ if query:
                         hide_index=True,
                         use_container_width=True,
                         column_config={
-                            "STT": st.column_config.NumberColumn(
-                                "STT",
-                                width="small"
-                            ),
                             "Cột điểm / Nội dung": st.column_config.TextColumn(
                                 "NỘI DUNG",
                                 width="large"
