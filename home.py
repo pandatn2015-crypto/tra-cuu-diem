@@ -204,7 +204,58 @@ div[data-testid="stDataFrame"] {
         padding-right: 1rem;
     }
 }
+/* Lưới hiển thị điểm tự co giãn */
+.score-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 10px;
+    width: 100%;
+    margin-top: 10px;
+}
 
+.score-item {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 12px;
+    min-width: 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+}
+
+.score-label {
+    color: #64748b;
+    font-size: 13px;
+    font-weight: 600;
+    overflow-wrap: anywhere;
+    margin-bottom: 8px;
+}
+
+.score-value {
+    color: #174b85;
+    font-size: 20px;
+    font-weight: 800;
+    overflow-wrap: anywhere;
+}
+
+/* Điện thoại */
+@media (max-width: 480px) {
+    .score-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 7px;
+    }
+
+    .score-item {
+        padding: 10px;
+    }
+
+    .score-label {
+        font-size: 12px;
+    }
+
+    .score-value {
+        font-size: 18px;
+    }
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -761,7 +812,7 @@ if query:
             )
 
         
-        # ---------------------------------------------
+                # ---------------------------------------------
         # ĐIỂM THEO TỪNG MÔN
         # ---------------------------------------------
 
@@ -786,35 +837,34 @@ if query:
 
                 if rec["Điểm"]:
 
-                    df = pd.DataFrame([
-                        {
-                            "Cột điểm / Nội dung": k,
-                            "Kết quả": v
-                        }
-                        for k, v in rec["Điểm"].items()
-                    ])
+                    score_items = []
 
-                    st.dataframe(
-                        df,
-                        hide_index=True,
-                        use_container_width=True,
-                        column_config={
-                            "Cột điểm / Nội dung": st.column_config.TextColumn(
-                                "NỘI DUNG",
-                                width="large"
-                            ),
-                            "Kết quả": st.column_config.TextColumn(
-                                "KẾT QUẢ",
-                                width="medium"
-                            )
-                        }
+                    for k, v in rec["Điểm"].items():
+
+                        ten_cot = html.escape(str(k))
+                        gia_tri = html.escape(str(v))
+
+                        score_items.append(
+                            f'<div class="score-item">'
+                            f'<div class="score-label">{ten_cot}</div>'
+                            f'<div class="score-value">{gia_tri}</div>'
+                            f'</div>'
+                        )
+
+                    score_html = (
+                        '<div class="score-grid">'
+                        + "".join(score_items)
+                        + '</div>'
+                    )
+
+                    st.markdown(
+                        score_html,
+                        unsafe_allow_html=True
                     )
 
                 else:
 
-                    st.info(
-                        "Chưa có dữ liệu điểm cho môn học này."
-                    )
+                    st.info("Chưa có dữ liệu điểm cho môn học này.")
 
         # ---------------------------------------------
         # XUẤT EXCEL
